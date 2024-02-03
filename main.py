@@ -114,7 +114,17 @@ def p_1_DOWN():
     player_1.seth(270)
     
     
+def lose():
+    player_1.hideturtle()
+    player_1.color('red')
+    player_1.goto(0,0)
+    player_1.write('GAME OVER', font=('Arial', 15, "normal"))
 
+def win():
+    player_1.hideturtle()
+    player_1.goto(0,0)
+    player_1.write('YOUR WIN', font=('Arial', 15, "normal"))
+    
 scr1 = player_1.getscreen()
 scr1.listen()
 
@@ -126,21 +136,21 @@ plr_width = 2
 
 while lives > 0 and points < 11:
     if player_1.xcor() > screen_x + plr_width  or player_1.ycor() > screen_y + plr_width:
-        player_1.hideturtle()
-        player_1.goto(0,0)
-        player_1.write('GAME OVER', font=('Arial', 15, "normal"))
+        lose()
         break
     
     player_1.forward(speed)
 
     if player_1.distance(player_2.xcor(), player_2.ycor()) < 30:
-        player_1.shapesize(plr_width)
         plr_width += 1
+        player_1.shapesize(plr_width)
+        pause -= 0.05
         jump()
         scores()
-        speed += 10
+        speed += 1
 
     time.sleep(pause)
+
 turtle.exitonclick()
 
 
