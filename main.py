@@ -151,7 +151,7 @@ while lives > 0 and points < 11:
 
     time.sleep(pause)
 
-turtle.exitonclick()
+turtle.done()
 
 
 
